@@ -86,7 +86,7 @@
   if (nb_radius < 1) {
     stop("radius must be >= 1")
   }
-  if (!is.function(layout) && !(layout %in% c("layers", "islands")) && nb_radius > 1) {
+  if (!is.function(layout) && !(grid_method %in% c("layers", "islands")) && nb_radius > 1) {
     stop("radius > 1 only supports layers and islands layout")
   }
 
