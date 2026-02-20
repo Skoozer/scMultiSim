@@ -83,8 +83,14 @@
     stop(sprintf("CCI grid layout '%s' is not supported.", layout))
   }
 
-  if (nb_radius < 1) {
-    stop("radius must be >= 1")
+ is_nonlocal_radius <- FALSE
+  if (is.numeric(nb_radius)) {
+    if (nb_radius < 1) {
+      stop("radius must be >= 1")
+    }
+    is_nonlocal_radius <- nb_radius > 1
+  } else if (is.character(nb_radius)) {
+    is_nonlocal_radius <- TRUE
   }
   if (!is.function(layout) && !(grid_method %in% c("layers", "islands")) && nb_radius > 1) {
     stop("radius > 1 only supports layers and islands layout")
