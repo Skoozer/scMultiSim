@@ -92,8 +92,8 @@
   } else if (is.character(nb_radius)) {
     is_nonlocal_radius <- TRUE
   }
-  if (!is.function(layout) && !(grid_method %in% c("layers", "islands")) && nb_radius > 1) {
-    stop("radius > 1 only supports layers and islands layout")
+  if (!is.function(layout) && !(grid_method %in% c("layers", "islands")) && !isFALSE(is_nonlocal_radius)) {
+    stop("Non-local radius (>1 or kernel radius) only supports layers and islands layout")
   }
 
   if (!is.null(params$single.cell.gt) && params$single.cell.gt == TRUE) {
